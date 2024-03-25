@@ -8,18 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		C005E06D2BADEA7D00D85771 /* LeftitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C005E06C2BADEA7D00D85771 /* LeftitApp.swift */; };
-		C005E06F2BADEA7D00D85771 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C005E06E2BADEA7D00D85771 /* ContentView.swift */; };
 		C005E0712BADEA7E00D85771 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C005E0702BADEA7E00D85771 /* Assets.xcassets */; };
 		C005E0752BADEA7E00D85771 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C005E0742BADEA7E00D85771 /* Preview Assets.xcassets */; };
+		C0735CA22BB1B64500194344 /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0735C9E2BB1B64500194344 /* SheetView.swift */; };
+		C0735CA32BB1B64500194344 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0735C9F2BB1B64500194344 /* ContentView.swift */; };
+		C0735CA42BB1B64500194344 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0735CA02BB1B64500194344 /* LocationService.swift */; };
+		C0735CA52BB1B64500194344 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0735CA12BB1B64500194344 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C005E0692BADEA7D00D85771 /* Leftit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Leftit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C005E06C2BADEA7D00D85771 /* LeftitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftitApp.swift; sourceTree = "<group>"; };
-		C005E06E2BADEA7D00D85771 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C005E0702BADEA7E00D85771 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C005E0722BADEA7E00D85771 /* Leftit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Leftit.entitlements; sourceTree = "<group>"; };
 		C005E0742BADEA7E00D85771 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C0735C9E2BB1B64500194344 /* SheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		C0735C9F2BB1B64500194344 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C0735CA02BB1B64500194344 /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		C0735CA12BB1B64500194344 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,8 +58,11 @@
 		C005E06B2BADEA7D00D85771 /* Leftit */ = {
 			isa = PBXGroup;
 			children = (
+				C0735C9F2BB1B64500194344 /* ContentView.swift */,
+				C0735CA12BB1B64500194344 /* LocationManager.swift */,
+				C0735CA02BB1B64500194344 /* LocationService.swift */,
+				C0735C9E2BB1B64500194344 /* SheetView.swift */,
 				C005E06C2BADEA7D00D85771 /* LeftitApp.swift */,
-				C005E06E2BADEA7D00D85771 /* ContentView.swift */,
 				C005E0702BADEA7E00D85771 /* Assets.xcassets */,
 				C005E0722BADEA7E00D85771 /* Leftit.entitlements */,
 				C005E0732BADEA7E00D85771 /* Preview Content */,
@@ -139,8 +148,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C005E06F2BADEA7D00D85771 /* ContentView.swift in Sources */,
+				C0735CA22BB1B64500194344 /* SheetView.swift in Sources */,
 				C005E06D2BADEA7D00D85771 /* LeftitApp.swift in Sources */,
+				C0735CA52BB1B64500194344 /* LocationManager.swift in Sources */,
+				C0735CA42BB1B64500194344 /* LocationService.swift in Sources */,
+				C0735CA32BB1B64500194344 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

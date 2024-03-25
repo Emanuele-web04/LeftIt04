@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct LeftitApp: App {
+    @StateObject var vm = LocationManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SearchableMap()
+                .environmentObject(vm)
         }
     }
 }
