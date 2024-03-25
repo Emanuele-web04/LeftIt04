@@ -58,9 +58,9 @@ extension LocationManager: CLLocationManagerDelegate {
         
         guard let location = locations.last else { return }
         
-        DispatchQueue.main.async { [weak self] in
-            self?.region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
-        }
+//        DispatchQueue.main.async { [weak self] in
+        self.region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.25, longitudeDelta: 0.25))
+//        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

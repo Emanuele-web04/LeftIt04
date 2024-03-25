@@ -10,6 +10,7 @@ import MapKit
 struct SearchResult: Identifiable, Hashable {
     let id = UUID()
     let location: CLLocationCoordinate2D
+    let item: MKMapItem?
 
     static func == (lhs: SearchResult, rhs: SearchResult) -> Bool {
         lhs.id == rhs.id
@@ -62,7 +63,7 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
             let mapKitRequest = MKLocalSearch.Request()
             mapKitRequest.naturalLanguageQuery = query
             mapKitRequest.resultTypes = .pointOfInterest
-            if let coordinate {
+            if let coordinate = coordinate {
                 mapKitRequest.region = .init(.init(origin: .init(coordinate), size: .init(width: 1, height: 1)))
             }
             let search = MKLocalSearch(request: mapKitRequest)
@@ -72,7 +73,7 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
             return response.mapItems.compactMap { mapItem in
                 guard let location = mapItem.placemark.location?.coordinate else { return nil }
 
-                return .init(location: location)
+                return .init(location: location, item: mapItem)
             }
         }
 }

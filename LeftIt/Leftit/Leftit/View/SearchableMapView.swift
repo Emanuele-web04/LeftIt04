@@ -4,7 +4,7 @@
 //
 //  Created by Emanuele Di Pietro on 24/03/24.
 //
-
+import SwiftData
 import SwiftUI
 import MapKit
 
@@ -15,18 +15,26 @@ struct SearchableMap: View {
     //2
     @State private var selectedLocation: SearchResult?
     @State private var isSheetPresented: Bool = true
+    
+    @State private var showDetailSheet: Bool = false
+    
+    @StateObject var locationManager = LocationManager()
+    
+    //create a query loctions: [LocationItem]
+    @Query var locations: [LocationItem]
 
     var body: some View {
-        // 3
         Map(position: $position, selection: $selectedLocation) {
-            // 4
             UserAnnotation()
+        
             ForEach(searchResults) { result in
-                Marker(coordinate: result.location) {
-                    Image(systemName: "mappin")
-                }
+                Marker(result.item?.placemark.name ?? "", systemImage: "mappin.and.ellipse", coordinate: result.location)
                 .tag(result)
             }
+            //then here do a foreach of every locations, and pass the parameters to the marker
+            ForEach(locations, id: \.self) { location in
+                Marker(location.name, systemImage: "mappin.and.ellipse", coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
+            }.tint(.secondaryOrange)
         }
         .tint(LinearGradient(gradient: Gradient(colors: [Color.primaryViolet, Color.secondaryViolet]), startPoint: .top, endPoint: .bottom))
             .mapControlVisibility(.visible)
@@ -36,9 +44,16 @@ struct SearchableMap: View {
                 MapScaleView()
                 MapCompass()
             }
-        // 5
+            .sheet(isPresented: $showDetailSheet, content: {
+                LocationDetailsView(selectedLocation: $selectedLocation, showDetailSheet: $showDetailSheet)
+                    .presentationDetents([.height(500)])
+                    .presentationBackground(.clear)
+            })
         .onChange(of: selectedLocation) {
-            isSheetPresented = selectedLocation == nil
+            showDetailSheet = true
+            if showDetailSheet {
+                isSheetPresented.toggle()
+            }
         }
         // 6
         .onChange(of: searchResults) {

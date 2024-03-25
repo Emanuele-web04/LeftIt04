@@ -39,11 +39,14 @@ struct SheetView: View {
                     // 3
                     Button(action: { didTapOnCompletion(completion) }) {
                         HStack {
-                            Image(systemName: "mappin.and.ellipse").foregroundStyle(.primaryViolet)
+                            
                             VStack(alignment: .leading, spacing: 4) {
-                                Text(completion.title)
-                                    .font(.headline)
-                                    .fontDesign(.rounded)
+                                HStack {
+                                    Image(systemName: "mappin.and.ellipse.circle.fill").foregroundStyle(.white, .primaryViolet).font(.system(size: 20))
+                                    Text(completion.title)
+                                        .font(.headline)
+                                        .fontDesign(.rounded)
+                                }
                                 Text(completion.subTitle)
                                 // What can we show?
                                 if let url = completion.url {
