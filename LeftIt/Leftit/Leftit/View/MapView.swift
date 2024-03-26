@@ -34,7 +34,7 @@ struct SearchableMap: View {
             //then here do a foreach of every locations, and pass the parameters to the marker
             ForEach(locations, id: \.self) { location in
                 Marker(location.name, systemImage: "mappin.and.ellipse", coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude))
-            }.tint(.secondaryOrange)
+            }.tint(.primaryOrange)
         }
         .tint(LinearGradient(gradient: Gradient(colors: [Color.primaryViolet, Color.secondaryViolet]), startPoint: .top, endPoint: .bottom))
             .mapControlVisibility(.visible)

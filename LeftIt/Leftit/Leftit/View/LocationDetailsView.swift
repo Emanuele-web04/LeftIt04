@@ -70,12 +70,13 @@ struct LocationDetailsView: View {
             }
             HStack {
                 Button {
+                    //qui io devo passare i parametri, such as title etc
                     if let selectedLocation = selectedLocation {
                         location.name = selectedLocation.item?.placemark.name ?? ""
                         location.title = selectedLocation.item?.placemark.title ?? ""
                         location.latitude = selectedLocation.location.latitude
                         location.longitude = selectedLocation.location.longitude
-                        
+                        //non devo fare insert perchè lo devo fare dopo nella sheet view che compila le cose
                         modelContext.insert(location)
                     }
                     print(location.name)

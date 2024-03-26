@@ -27,12 +27,15 @@ struct BlockSchedule: View {
                         .foregroundStyle(.primary)
                         .padding(.bottom, 5)
                     Text(location.name)
-                        .foregroundStyle(Color.primary)
+                        .fixedSize(horizontal: false, vertical: true)
+                        .lineLimit(2)
+                        .multilineTextAlignment(.center)
+                        .foregroundStyle(.primary)
                         .fontWeight(.medium)
                     
                 }
             }.frame(maxWidth: .infinity)
-                .frame(height: 800)
+                .frame(height: 80)
             .padding(20)
             
         }
@@ -69,7 +72,7 @@ struct ContentView: View {
         ZStack {
             RoundedRectangle(cornerRadius: 18)
                 .frame(maxWidth: .infinity)
-                .frame(height: 100)
+                .frame(height: 110)
                 .foregroundStyle(LinearGradient(gradient: Gradient(colors: [.primaryViolet, .secondaryViolet]), startPoint: .top, endPoint: .bottom))
             HStack {
                 VStack(alignment: .leading) {
@@ -91,8 +94,16 @@ struct ContentView: View {
                     VStack(alignment: .leading){
                         LazyVGrid(columns: gridLayout, spacing: 20) {
                             ForEach(locations) { location in
-                                BlockSchedule(location: location)
-                                    .frame(maxWidth: .infinity)
+                                ScrollView {
+                                    NavigationLink {
+                                        ObjectsView()
+                                            .tint(.primaryOrange)
+                                    } label: {
+                                        BlockSchedule(location: location)
+                                            .frame(maxWidth: .infinity)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
                             }
                         }
                     }
@@ -113,9 +124,9 @@ struct ContentView: View {
                         }
                         .fontWeight(.medium)
                         .foregroundColor(.white)
-                        .padding()
+                        .padding(12)
                         .background(LinearGradient(gradient: Gradient(colors: [.primaryViolet, .secondaryViolet]), startPoint: .top, endPoint: .bottom))
-                        .cornerRadius(50)
+                        .cornerRadius(14)
                         .padding(.vertical, 10)
                     }.frame(maxWidth: .infinity)
                 }
@@ -123,9 +134,8 @@ struct ContentView: View {
                     Spacer()
                 }
                 ToolbarItem(placement: .bottomBar) {
-                    NavigationLink{
-                        SearchableMap()
-                            .ignoresSafeArea()
+                    Button {
+                        showMap = true
                     } label: {
                         HStack {
                             Image(systemName: "map.fill")
@@ -133,15 +143,30 @@ struct ContentView: View {
                         .fontWeight(.medium)
                         .foregroundColor(.white)
                         .padding(5)
-                        .font(.title3)
+                        .font(.title2)
                         .background(LinearGradient(gradient: Gradient(colors: [.primaryViolet, .secondaryViolet]), startPoint: .top, endPoint: .bottom))
-                        .cornerRadius(50)
+                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
                         .padding(.vertical, 10)
                     }.frame(maxWidth: .infinity)
-                     
-                       
                 }
             }
+            .fullScreenCover(isPresented: $showMap, content: {
+                SearchableMap()
+                    .safeAreaInset(edge: .top, alignment: .leading) {
+                        Button(action: {
+                            showMap = false
+                        }, label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 8)
+                                    .frame(width: 42, height: 42)
+                                    .foregroundStyle(.thickMaterial)
+                                Image(systemName: "chevron.down")
+                                    .font(.system(size: 20)).fontWeight(.medium)
+                                    .foregroundStyle(.primaryViolet)
+                            }.background(.ultraThinMaterial).cornerRadius(8.0)
+                        }).padding(8).shadow(radius: 2)
+                    }
+            })
         }.fontDesign(.rounded)
     }
 }

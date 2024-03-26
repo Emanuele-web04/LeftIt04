@@ -17,7 +17,7 @@ struct LeftitApp: App {
     
     init() {
         do {
-            container = try ModelContainer(for: LocationItem.self, configurations: ModelConfiguration())
+            container = try ModelContainer(for: LocationItem.self, ObjectItem.self, configurations: ModelConfiguration())
         } catch {
             fatalError("Fatal Error: \(error.localizedDescription)")
         }
