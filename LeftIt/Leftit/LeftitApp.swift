@@ -13,6 +13,8 @@ struct LeftitApp: App {
     @StateObject var vm = LocationManager()
     private let container: ModelContainer
     
+    @AppStorage ("isOnboarding") var isOnboarding: Bool = true
+    
     init() {
         do {
             container = try ModelContainer(for: LocationItem.self, configurations: ModelConfiguration())
@@ -23,8 +25,14 @@ struct LeftitApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SearchableMap()
-                .environmentObject(vm)
+            if isOnboarding {
+                Onboarding()
+                    .onDisappear { isOnboarding = false }
+                    .environmentObject(vm)
+            } else {
+                ContentView()
+                    .environmentObject(vm)
+            }
         }
         .modelContainer(container)
     }

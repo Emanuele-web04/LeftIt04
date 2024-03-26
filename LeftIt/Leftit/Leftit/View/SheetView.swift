@@ -65,6 +65,9 @@ struct SheetView: View {
         .onChange(of: search) {
             locationService.update(queryFragment: search)
         }
+        .ignoresSafeArea()
+        .toolbarBackground(.visible, for: .navigationBar)
+        .toolbarBackground(.ultraThinMaterial, for: .navigationBar)
         .padding()
         .interactiveDismissDisabled()
         .presentationDetents([.height(100), .large])

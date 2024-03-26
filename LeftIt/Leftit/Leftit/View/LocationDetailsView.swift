@@ -40,7 +40,6 @@ struct LocationDetailsView: View {
                 Spacer()
                 Button {
                     showDetailSheet.toggle()
-                    selectedLocation = nil
                 } label: {
                     Image(systemName: "xmark.circle.fill")
                         .font(.system(size: 30))
@@ -81,7 +80,6 @@ struct LocationDetailsView: View {
                     }
                     print(location.name)
                     showDetailSheet.toggle()
-                    selectedLocation = nil
                 } label: {
                     Label("Add location", systemImage: "paperplane.circle.fill")
                         .font(.headline)
