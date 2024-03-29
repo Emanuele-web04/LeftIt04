@@ -24,7 +24,7 @@ struct SearchableMap: View {
     @Query var locations: [LocationItem]
 
     var body: some View {
-        Map(position: $position, selection: $selectedLocation) {
+        Map(initialPosition: position, selection: $selectedLocation) {
             UserAnnotation()
         
             ForEach(searchResults) { result in

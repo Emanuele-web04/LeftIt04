@@ -30,6 +30,7 @@ struct AddObjectView: View {
                     Button {
                         object.id = location.name
                         print(object.id)
+                        print(object.name)
                         modelContext.insert(object)
                         object.isBrought = true
                         dismiss()

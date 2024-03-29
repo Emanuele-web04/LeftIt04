@@ -12,13 +12,15 @@ struct ObjectsView: View {
     
     @Query var objects: [ObjectItem]
     @Bindable var location: LocationItem
+    @Environment(\.dismiss) var dismiss
     @Environment(\.modelContext) var modelContext
     
+    @State private var showConfirmationAlert = false
     @State private var showObjectSheet = false
 
     @ViewBuilder
     var objectToBring: some View {
-        let countObjects = filteredObjects.count
+        let countObjects = filteredObjects.filter({ $0.isBrought }).count
         ZStack {
             RoundedRectangle(cornerRadius: 18)
                 .frame(maxWidth: .infinity)
@@ -38,7 +40,6 @@ struct ObjectsView: View {
     
     var filteredObjects: [ObjectItem] {
         let filtered = objects.filter { $0.id == location.name }
-        print("Filtering for location: \(location.name), found \(filtered.count) matching objects.")
         return filtered
     }
 
@@ -53,7 +54,7 @@ struct ObjectsView: View {
                         //il problema con questa cosa è che i parametri si passano a tutte le view, devo vede come devo fa per ogni view
                         //altrimenti dovrei fare tipo che metto le categorie e poi faccio il check in che cosa sto
                         //il prooblema è che io non so che luogo l'utente usa capi, ceh devo checkare in che view sta, e come potrei fa
-                        ForEach(objectsSorted) { obj in
+                        ForEach(objectsSorted, id: \.self) { obj in
                             HStack {
                                 Button {
                                     withAnimation {
@@ -80,31 +81,51 @@ struct ObjectsView: View {
                     objectToBring
                 }.listSectionSeparator(.hidden, edges: .top)
             }
+            .alert("Are you sure you want to delete this location?", isPresented: $showConfirmationAlert, actions: {
+                           Button("Delete", role: .destructive) {
+                               // Perform the deletion
+                               modelContext.delete(location)
+                               dismiss()
+                           }
+                           Button("Don't Delete", role: .cancel) { }
+                       }, message: {
+                           Text("This action cannot be undone.")
+                       })
             .scrollContentBackground(.hidden)
             .listStyle(.plain)
-            .tint(.primaryOrange)
-            .navigationTitle("Objects")
+            .tint(.secondaryOrange)
+            .navigationTitle(location.name).lineLimit(2)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button(action: {
                                showObjectSheet = true
                            }) {
-                               Image(systemName: "plus")
-                                   .font(Font.system(.title2).weight(.bold))
-                                   .foregroundStyle(.white)
-                                   .font(.largeTitle)
-                                   .frame(width: 75, height: 75)
-                                   .background(LinearGradient(gradient: Gradient(colors: [.primaryOrange, .secondaryOrange]), startPoint: .top, endPoint: .bottom))
-                                   .clipShape(Circle())
-                                   .padding()
-                                   .shadow(radius: 2.5)
-                           }
+                               HStack {
+                                   Image(systemName: "key.fill")
+                                   Text("Add object")
+                               }
+                               .fontWeight(.medium)
+                               .foregroundColor(.white)
+                               .padding(12)
+                               .background(LinearGradient(gradient: Gradient(colors: [.primaryOrange, .secondaryOrange]), startPoint: .top, endPoint: .bottom))
+                               .cornerRadius(14)
+                               .padding(.vertical, 10)
+                           }.frame(maxWidth: .infinity)
                            .sheet(isPresented: $showObjectSheet) {
                               AddObjectView(location: location)
                            }
                 }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(role: .destructive) {
+                        showConfirmationAlert = true
+                    } label: {
+                        Image(systemName: "trash.circle").tint(.primaryOrange)
+                    }
+                    
+                }
+                
             }
-        }.tint(.primaryOrange)
+        }
     }
 }
 

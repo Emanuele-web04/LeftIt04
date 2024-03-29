@@ -66,10 +66,13 @@ struct ContentView: View {
     var blockObject = Block()
     @State private var searchText = ""
     
-    @State private var object = ObjectItem()
+//    @State private var object = ObjectItem()
  
     @Query var locations: [LocationItem]
+    @Environment(\.modelContext) var modelContext
     @ObservedObject var locationManager = LocationManager()
+    
+    var currentLocation: CLLocation?
     
     @ViewBuilder
     var locationRightNow: some View {
@@ -81,7 +84,7 @@ struct ContentView: View {
             HStack {
                 VStack(alignment: .leading) {
                     Text("Current Location").foregroundStyle(.white).opacity(0.8).font(.caption)
-                    Text("Home").foregroundStyle(.white).font(.title).fontWeight(.semibold)
+                    Text("\(String(describing: currentLocation?.description))").foregroundStyle(.white).font(.title).fontWeight(.semibold)
                 }
                 Spacer()
                 Image(systemName: "mappin.and.ellipse").foregroundStyle(.white).font(.largeTitle)
@@ -109,6 +112,7 @@ struct ContentView: View {
                                         BlockSchedule(location: location)
                                             .frame(maxWidth: .infinity)
                                     }
+                                    .tint(.primaryOrange)
                                     .buttonStyle(.plain)
                                 }
                             }

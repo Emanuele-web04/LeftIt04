@@ -105,13 +105,29 @@
 		C0735CA92BB21DC600194344 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C0797F552BB31F660056546B /* ObjectsView.swift */,
-				C0B6D1022BB4688600D2B82C /* AddObjectView.swift */,
-				C0735CA62BB1BC7300194344 /* LocationDetailsView.swift */,
-				C0735C9E2BB1B64500194344 /* SheetView.swift */,
+				C076942C2BB757F800DE7AB2 /* Object */,
+				C076942D2BB7580500DE7AB2 /* MapSheets */,
 				C0735C9F2BB1B64500194344 /* MapView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		C076942C2BB757F800DE7AB2 /* Object */ = {
+			isa = PBXGroup;
+			children = (
+				C0797F552BB31F660056546B /* ObjectsView.swift */,
+				C0B6D1022BB4688600D2B82C /* AddObjectView.swift */,
+			);
+			path = Object;
+			sourceTree = "<group>";
+		};
+		C076942D2BB7580500DE7AB2 /* MapSheets */ = {
+			isa = PBXGroup;
+			children = (
+				C0735CA62BB1BC7300194344 /* LocationDetailsView.swift */,
+				C0735C9E2BB1B64500194344 /* SheetView.swift */,
+			);
+			path = MapSheets;
 			sourceTree = "<group>";
 		};
 		C0797F542BB31F280056546B /* Item */ = {
