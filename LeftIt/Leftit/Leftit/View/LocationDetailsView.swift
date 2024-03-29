@@ -81,6 +81,7 @@ struct LocationDetailsView: View {
                     }
                     print(location.name)
                     showDetailSheet.toggle()
+                    //chiudi questo e apri quello che ti fa mettere l'elenco
                 } label: {
                     Label("Add location", systemImage: "paperplane.circle.fill")
                         .font(.headline)

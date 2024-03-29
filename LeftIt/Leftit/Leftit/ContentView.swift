@@ -26,6 +26,7 @@ struct BlockSchedule: View {
                         .font(.system(size: 30))
                         .foregroundStyle(.primary)
                         .padding(.bottom, 5)
+                    //io qui non devo più presentare questo, ma il titolo che sceglierò, palese devi usare le relationship
                     Text(location.name)
                         .fixedSize(horizontal: false, vertical: true)
                         .lineLimit(2)
@@ -65,7 +66,10 @@ struct ContentView: View {
     var blockObject = Block()
     @State private var searchText = ""
     
+    @State private var object = ObjectItem()
+ 
     @Query var locations: [LocationItem]
+    @ObservedObject var locationManager = LocationManager()
     
     @ViewBuilder
     var locationRightNow: some View {
@@ -93,10 +97,13 @@ struct ContentView: View {
                 Section {
                     VStack(alignment: .leading){
                         LazyVGrid(columns: gridLayout, spacing: 20) {
+                            //io devo creare un passaggio di variabile di questa stringa in quella var
                             ForEach(locations) { location in
                                 ScrollView {
                                     NavigationLink {
-                                        ObjectsView()
+                                        //questo porta tutto alla stessa view
+                                        ObjectsView(location: location)
+                                            .id(location.name)
                                             .tint(.primaryOrange)
                                     } label: {
                                         BlockSchedule(location: location)
@@ -116,7 +123,7 @@ struct ContentView: View {
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button {
-                        
+                        showMap = true
                     } label: {
                         HStack {
                             Image(systemName: "paperplane.fill")
@@ -127,25 +134,6 @@ struct ContentView: View {
                         .padding(12)
                         .background(LinearGradient(gradient: Gradient(colors: [.primaryViolet, .secondaryViolet]), startPoint: .top, endPoint: .bottom))
                         .cornerRadius(14)
-                        .padding(.vertical, 10)
-                    }.frame(maxWidth: .infinity)
-                }
-                ToolbarItem(placement: .bottomBar) {
-                    Spacer()
-                }
-                ToolbarItem(placement: .bottomBar) {
-                    Button {
-                        showMap = true
-                    } label: {
-                        HStack {
-                            Image(systemName: "map.fill")
-                        }
-                        .fontWeight(.medium)
-                        .foregroundColor(.white)
-                        .padding(5)
-                        .font(.title2)
-                        .background(LinearGradient(gradient: Gradient(colors: [.primaryViolet, .secondaryViolet]), startPoint: .top, endPoint: .bottom))
-                        .clipShape(RoundedRectangle(cornerRadius: 8.0))
                         .padding(.vertical, 10)
                     }.frame(maxWidth: .infinity)
                 }

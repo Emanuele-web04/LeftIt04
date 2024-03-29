@@ -20,6 +20,9 @@ class LocationManager: NSObject, ObservableObject {
     let locationManager = CLLocationManager()
     @Published var region = MKCoordinateRegion(center: MapDetails.startingLocation, span: MapDetails.defaultSpan)
     
+    @Published var location: CLLocationCoordinate2D?
+    @Published var name: MKMapItem?
+    
     override init() {
         super.init()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest

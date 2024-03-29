@@ -20,6 +20,7 @@
 		C0797F4F2BB23E510056546B /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0797F4E2BB23E510056546B /* Onboarding.swift */; };
 		C0797F532BB31EA40056546B /* ObjectItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0797F522BB31EA40056546B /* ObjectItem.swift */; };
 		C0797F562BB31F660056546B /* ObjectsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0797F552BB31F660056546B /* ObjectsView.swift */; };
+		C0B6D1032BB4688600D2B82C /* AddObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B6D1022BB4688600D2B82C /* AddObjectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		C0797F4E2BB23E510056546B /* Onboarding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		C0797F522BB31EA40056546B /* ObjectItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectItem.swift; sourceTree = "<group>"; };
 		C0797F552BB31F660056546B /* ObjectsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsView.swift; sourceTree = "<group>"; };
+		C0B6D1022BB4688600D2B82C /* AddObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddObjectView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				C0797F552BB31F660056546B /* ObjectsView.swift */,
+				C0B6D1022BB4688600D2B82C /* AddObjectView.swift */,
 				C0735CA62BB1BC7300194344 /* LocationDetailsView.swift */,
 				C0735C9E2BB1B64500194344 /* SheetView.swift */,
 				C0735C9F2BB1B64500194344 /* MapView.swift */,
@@ -195,6 +198,7 @@
 				C0735CA22BB1B64500194344 /* SheetView.swift in Sources */,
 				C005E06D2BADEA7D00D85771 /* LeftitApp.swift in Sources */,
 				C0797F4D2BB23E190056546B /* ContentView.swift in Sources */,
+				C0B6D1032BB4688600D2B82C /* AddObjectView.swift in Sources */,
 				C0797F562BB31F660056546B /* ObjectsView.swift in Sources */,
 				C0735CA52BB1B64500194344 /* LocationManager.swift in Sources */,
 				C0735CA42BB1B64500194344 /* LocationService.swift in Sources */,
